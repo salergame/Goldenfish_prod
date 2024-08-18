@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бронирование</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Бронирование домиков</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="about.html">О нас</a></li>
+                <li><a href="contact.html">Контакты</a></li>
+                <li><a href="booking.html">Бронирование</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="map">
+            <h2>Карта домиков</h2>
+            <div class="cottage-map">
+                <div class="cottage" data-id="1">Домик 1</div>
+                <div class="cottage" data-id="2">Домик 2</div>
+                <div class="cottage" data-id="3">Домик 3</div>
+                <div class="cottage" data-id="4">Домик 4</div>
+                <div class="cottage" data-id="5">Домик 5</div>
+                <div class="cottage" data-id="6">Домик 6</div>
+                <div class="cottage" data-id="7">Домик 7</div>
+                <div class="cottage" data-id="8">Домик 8</div>
+                <div class="cottage" data-id="9">Домик 9</div>
+                <div class="cottage" data-id="10">Домик 10</div>
+            </div>
+        </section>
+        
+        <section id="booking-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="cottage-title">Домик</h2>
+                <div id="calendar-container">
+                    <label for="startDate">Дата:</label>
+                    <input type="date" id="startDate">
+                </div>
+                <form id="booking-form">
+                    <label for="name">ФИО:</label>
+                    <input type="text" id="name" name="name" required autocomplete="name">
+                    <label for="phone">Телефон:</label>
+                    <input type="text" id="phone" name="phone" required autocomplete="tel">
+                    <label for="payment">Способ оплаты:</label>
+                    <select id="payment" name="payment" required>
+                        <option value="qr">QR-код</option>
+                        <option value="cash">Наличные</option>
+                    </select>
+                    <button type="submit">Забронировать</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>Контактная информация: ваш телефон, email, адрес.</p>
+    </footer>
+    
+    <script src="js/booking.js"></script>
+</body>
+</html>

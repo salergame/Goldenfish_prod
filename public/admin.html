@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ Панель</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Админ Панель</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="about.html">О нас</a></li>
+                <li><a href="contact.html">Контакты</a></li>
+                <li><a href="booking.html">Бронирование</a></li>
+                <li><a href="admin.html">Админ Панель</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="admin-report">
+            <h2>Заполнение Отчета</h2>
+            <form id="admin-form">
+                <label for="report-date">Дата заполнения:</label>
+                <input type="date" id="report-date" name="report-date" required>
+                
+                <label for="reservation-name">Бронь на имя:</label>
+                <input type="text" id="reservation-name" name="reservation-name" required>
+                
+                <label for="place">Место:</label>
+                <input type="text" id="place" name="place" required>
+                
+                <label for="adults">Кол-во взрослые:</label>
+                <input type="number" id="adults" name="adults" required>
+                
+                <label for="children">Кол-во дети:</label>
+                <input type="number" id="children" name="children" required>
+                
+                <label for="prepayment">Предоплата (сумма):</label>
+                <input type="number" id="prepayment" name="prepayment" required>
+                
+                <label for="payment-method">наличные или kaspi QR:</label>
+                <select id="payment-method" name="payment-method" required>
+                    <option value="cash">наличные</option>
+                    <option value="kaspi">kaspi QR</option>
+                </select>
+                
+                <label for="contact">Контакты:</label>
+                <input type="text" id="contact" name="contact" required>
+                
+                <label for="deposit">Залог (10000 kzt):</label>
+                <input type="number" id="deposit" name="deposit" value="10000" readonly>
+                
+                <label for="id-card">удостоверение личности:</label>
+                <input type="text" id="id-card" name="id-card" required>
+                
+                <label for="booking-date">Дата бронирования:</label>
+                <input type="date" id="booking-date" name="booking-date" required>
+                
+                <label for="staff-name">ФИО персонала кто заполнил бланк:</label>
+                <input type="text" id="staff-name" name="staff-name" required>
+                
+                <label for="arrival-date">Дата и время заезда:</label>
+                <input type="datetime-local" id="arrival-date" name="arrival-date" required>
+                
+                <label for="payment-on-arrival">Оплата по факту (сумма):</label>
+                <input type="number" id="payment-on-arrival" name="payment-on-arrival" required>
+                
+                <label for="additional-services">Доп услуги (аренда бани, самовара, тапчана и т.д):</label>
+                <textarea id="additional-services" name="additional-services"></textarea>
+                
+                <label for="additional-services-payment">Оплата за доп услуги (перечислить услуги и сумму):</label>
+                <textarea id="additional-services-payment" name="additional-services-payment"></textarea>
+                
+                <label for="total-bill">Итоговый счет на момент съезда:</label>
+                <input type="number" id="total-bill" name="total-bill" required>
+                
+                <h3>Посуда:</h3>
+                <label for="big-spoon">Ложка большая:</label>
+                <input type="number" id="big-spoon" name="big-spoon" required>
+                
+                <label for="big-ceramic-plate">Кер.тар большая:</label>
+                <input type="number" id="big-ceramic-plate" name="big-ceramic-plate" required>
+                
+                <label for="tea-spoon">Чайная ложка:</label>
+                <input type="number" id="tea-spoon" name="tea-spoon" required>
+                
+                <label for="big-black-plate">Тар больш. черная:</label>
+                <input type="number" id="big-black-plate" name="big-black-plate" required>
+                
+                <label for="fork">Вилки:</label>
+                <input type="number" id="fork" name="fork" required>
+                
+                <label for="plastic-plate">Пластик. тарелка:</label>
+                <input type="number" id="plastic-plate" name="plastic-plate" required>
+                
+                <label for="bread-basket">Корзина для хлеба:</label>
+                <input type="number" id="bread-basket" name="bread-basket" required>
+                
+                <label for="plastic-cup">Пластик стакан:</label>
+                <input type="number" id="plastic-cup" name="plastic-cup" required>
+                
+                <label for="dessert-plate">Десертная тарелка:</label>
+                <input type="number" id="dessert-plate" name="dessert-plate" required>
+                
+                <label for="skewer">Шампур:</label>
+                <input type="number" id="skewer" name="skewer" required>
+                
+                <button type="submit">Отправить отчет</button>
+            </form>
+        </section>
+    </main>
+    
+    <footer>
+        <p>Контактная информация: ваш телефон, email, адрес.</p>
+    </footer>
+    
+    <script src="js/admin.js"></script>
+</body>
+</html>

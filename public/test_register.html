@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>Тест регистрации</h1>
+    <form id="registerForm">
+        <label for="username">Имя пользователя:</label>
+        <input type="text" id="username" name="username" required>
+        
+        <label for="phone">Телефон:</label>
+        <input type="text" id="phone" name="phone" required>
+        
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" required>
+        
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+    
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const phone = document.getElementById('phone').value;
+            const password = document.getElementById('password').value;
+            
+            const userData = {
+                username: username,
+                phone: phone,
+                password: password
+            };
+            
+            console.log('Sending registration data:', userData); // Отладочное сообщение
+            
+            fetch('/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Received response:', data); // Отладочное сообщение
+                if (data.success) {
+                    alert('Регистрация прошла успешно!');
+                } else {
+                    alert('Ошибка регистрации: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+                alert('Ошибка регистрации, попробуйте еще раз.');
+            });
+        });
+    </script>
+</body>
+</html>

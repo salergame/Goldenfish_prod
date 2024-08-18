@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>Вход</h1>
+    <form id="loginForm">
+        <label for="username">Имя пользователя:</label>
+        <input type="text" id="username" name="username" required>
+        
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" required>
+        
+        <button type="submit">Войти</button>
+    </form>
+    
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            const loginData = {
+                username: username,
+                password: password
+            };
+            
+            console.log('Sending login data:', loginData); // Отладочное сообщение
+            
+            fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(loginData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Received response:', data); // Отладочное сообщение
+                if (data.success) {
+                    alert('Вход выполнен успешно!');
+                    // Сохранение информации о пользователе в локальное хранилище
+                    localStorage.setItem('userRole', data.role);
+                    localStorage.setItem('username', username);
+                    localStorage.setItem('phone', data.phone);
+                    window.location.href = 'index.html';
+                } else {
+                    alert('Ошибка входа: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+                alert('Ошибка входа, попробуйте еще раз.');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div id="user-info" class="user-info"></div>
+        <h1>Добро пожаловать</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="about.html">О нас</a></li>
+                <li><a href="contact.html">Контакты</a></li>
+                <li><a href="login.html">Войти</a></li>
+                <li><a href="register.html">Зарегистрироваться</a></li>
+                <li><a href="booking.html">Бронирование</a></li>
+                <li id="admin-link" style="display: none;"><a href="admin.html">Администратор</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="main-content">
+            <h2>Главный контент</h2>
+            <p>Добро пожаловать на наш сайт!</p>
+            <!-- Лента изображений -->
+            <div class="image-carousel">
+                <div class="carousel-track-container">
+                    <ul class="carousel-track">
+                        <li class="carousel-slide"><img class="carousel-image" src="images/image1.jpg" alt="Изображение 1"></li>
+                        <li class="carousel-slide"><img class="carousel-image" src="images/image2.jpg" alt="Изображение 2"></li>
+                        <li class="carousel-slide"><img class="carousel-image" src="images/image3.jpg" alt="Изображение 3"></li>
+                        <li class="carousel-slide"><img class="carousel-image" src="images/image4.jpg" alt="Изображение 4"></li>
+                        <li class="carousel-slide"><img class="carousel-image" src="images/image5.jpg" alt="Изображение 5"></li>
+                    </ul>
+                </div>
+                <div class="carousel-buttons">
+                    <button class="carousel-button left">&#9664;</button>
+                    <button class="carousel-button right">&#9654;</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>Контактная информация: ваш телефон, email, адрес.</p>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userRole = localStorage.getItem('userRole');
+            const username = localStorage.getItem('username');
+            const phone = localStorage.getItem('phone');
+    
+            if (userRole) {
+                document.getElementById('user-info').innerText = `Пользователь: ${username}, Телефон: ${phone}`;
+            }
+    
+            if (userRole === 'admin') {
+                document.getElementById('admin-link').style.display = 'block';
+            }
+    
+            const track = document.querySelector('.carousel-track');
+            const slides = Array.from(track.children);
+            const nextButton = document.querySelector('.carousel-button.right');
+            const prevButton = document.querySelector('.carousel-button.left');
+    
+            const setSlidePosition = (slide, index) => {
+                slide.style.left = slideWidth * index + 'px';
+            };
+    
+            const moveToSlide = (track, currentSlide, targetSlide) => {
+                track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
+                currentSlide.classList.remove('current-slide');
+                targetSlide.classList.add('current-slide');
+            };
+    
+            const updateSlidePositions = () => {
+                const slideWidth = slides[0].getBoundingClientRect().width;
+                slides.forEach((slide, index) => {
+                    slide.style.left = slideWidth * index + 'px';
+                });
+            };
+    
+            prevButton.addEventListener('click', e => {
+                const currentSlide = track.querySelector('.current-slide');
+                const prevSlide = currentSlide.previousElementSibling || slides[slides.length - 1];
+                moveToSlide(track, currentSlide, prevSlide);
+            });
+    
+            nextButton.addEventListener('click', e => {
+                const currentSlide = track.querySelector('.current-slide');
+                const nextSlide = currentSlide.nextElementSibling || slides[0];
+                moveToSlide(track, currentSlide, nextSlide);
+            });
+    
+            window.addEventListener('resize', updateSlidePositions);
+    
+            slides[0].classList.add('current-slide');
+            updateSlidePositions();
+        });
+    </script>    
+</body>
+</html>
